@@ -5,14 +5,15 @@
   "scripts": {
     "start": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "activ-update": "npm i @ixily/activ-web@latest --force"
   },
   "dependencies": {
-    "@ixily/activ-web": "2.1.111",
+    "@ixily/activ-web": "^2.1.137",
     "@metamask/detect-provider": "^2.0.0",
+    "vite-plugin-node-stdlib-browser": "^0.2.1",
     "vue": "3.2.25",
-    "vue-class-component": "^8.0.0-0",
-    "vite-plugin-node-stdlib-browser": "^0.2.1"
+    "vue-class-component": "^8.0.0-0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "2.2.0",

@@ -1,6 +1,9 @@
 <template>
   <div>
     <h1 class='title'>ACTIV Ideas</h1>
+    <div class='loading' v-if="loading">
+      <img src="./assets/loader.gif" alt="loading" />
+    </div>
     <div class='main-container'>
       <div class="box1 box" v-for="idea in ideas" :key="idea.id">
         <div class="content">
@@ -43,9 +46,13 @@ import IXilyACTIV from '@ixily/activ-web';
 export default class App extends Vue {
 
   ideas: any[] = [];
+  loading: boolean = false;
 
   public async mounted() {
     try {
+
+      this.loading = true;
+
       const ethereum: any = await detectEthereumProvider();
 
       await ethereum?.request({ method: 'eth_requestAccounts' });
@@ -85,7 +92,9 @@ export default class App extends Vue {
         })
 
         const ideas = await activ.getAllIdeas(1, 30);
+
         this.ideas = ideas?.data;
+        this.loading = false;
       }
 
     } catch (err: any) {
@@ -127,6 +136,15 @@ body {
   background: #212121;
   margin-top: 50px;
   margin-bottom: 50px;
+}
+
+.loading {
+  text-align: center;
+
+  & img {
+    height: 45px;
+    width: 45px;
+  }
 }
 
 .title {
